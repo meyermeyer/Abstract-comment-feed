@@ -1,39 +1,30 @@
 import React, {Component} from 'react';
 import axios from 'axios'
 import {connect} from 'react-redux'
-// import {run, getAllProjects} from '../Abstract/Abstract'
-import * as Abstract from 'abstract-sdk';
-require('dotenv').config();
+
+import CommentFeed from '../CommentFeed/CommentFeed'
 
 class Comments extends Component {
-   state = {
-       token: '',
-       projectArray:[]
+    
+
+
+   handleClick = (project) =>{
+       console.log('in handleClick', project);
+       //store selected project ID in redux
+       this.props.dispatch({ type: 'STORE_CURRENT_PROJECT', payload: project})
+       //select comments for chosen project
+       this.props.dispatch({type:'FETCH_COMMENTS', payload: {id: project.id, client:this.props.reduxState.client}})
+       
+       
    }
-
-    // client = new Abstract.Client({
-    //     // Specify a specific transport for demo purposes
-    //     transportMode: "api",
-    //     accessToken: this.props.reduxState.token,
-    //     apiUrl: "https://cors-anywhere.herokuapp.com/api.goabstract.com"
-    // });
-
-//    async getAllProjects() {
-//     // Query all projects
-//     const projects = await this.client.projects.list().catch(error => {
-//         console.log('error', error)
-//         return error;
-//     });
-//     console.log('projects', projects);
-
-
-//     return projects;
-// }
     componentDidMount() {
+            //call to server to get access token from .env
             axios.get('/api/token')
             .then(response=>{
                 console.log('token', response.data);
+                // action to saga to create an instance of Abstract client
                 this.props.dispatch({type: 'FETCH_CLIENT', payload: response.data})
+                // store accessToken in redux
                 this.props.dispatch({type:'STORE_TOKEN', payload: response.data})
             })
             .catch(err=>{
@@ -42,14 +33,21 @@ class Comments extends Component {
         
     }
     render(){
-        console.log('redux', this.props.reduxState.promise);
+        console.log('redux', this.props.reduxState);
         
         return(
             <>
                 <h3>Projects IDs</h3>
-                {this.props.reduxState.projects.map((project, i)=>(
-                    <p key={i}>ID:{project.id} NAME:{project.name}</p>
-                ))}
+                <ul>
+                    {this.props.reduxState.projects.map((project, i) => (
+                        <li key={i}>
+                            ID:{project.id} NAME:{project.name}
+                            <button onClick={()=>this.handleClick(project)}>Select</button>
+                        </li>
+                    ))}
+                </ul>
+                <CommentFeed/>
+                
             </>
             
             

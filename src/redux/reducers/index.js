@@ -2,6 +2,8 @@ import { combineReducers } from 'redux';
 import token from './tokenReducer';
 import client from './clientReducer'
 import projects from './projectsReducer'
+import currentProject from './currentProjectReducer'
+import comments from './commentsReducer'
 
 
 // rootReducer is the primary reducer for our entire project
@@ -14,6 +16,8 @@ const rootReducer = combineReducers({
     token, // stores API access token
     client, // stores Abstract client
     projects, //stores all projects
+    currentProject, //stores data for selected project
+    comments, //stores all comments
 });
 
 export default rootReducer;
