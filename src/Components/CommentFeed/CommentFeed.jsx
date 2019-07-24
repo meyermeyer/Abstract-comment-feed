@@ -7,7 +7,7 @@ class CommentFeed extends Component {
     componentDidMount(){
         //fetch comments for selected project
         console.log('in commentsfeed redux:', this.props.reduxState)
-        this.props.dispatch({type:'FETCH_COMMENTS', payload: {client: this.props.reduxState.client, projectId: this.props.reduxState.currentProject}})
+        // this.props.dispatch({type:'FETCH_COMMENTS', payload: {client: this.props.reduxState.client, projectId: this.props.reduxState.currentProject}})
     }
     render(){
         return (

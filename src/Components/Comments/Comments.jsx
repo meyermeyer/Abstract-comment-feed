@@ -2,21 +2,21 @@ import React, {Component} from 'react';
 import axios from 'axios'
 import {connect} from 'react-redux'
 
+import Branches from '../Branches/Branches'
 import CommentFeed from '../CommentFeed/CommentFeed'
 
 class Comments extends Component {
-    
-
 
    handleClick = (project) =>{
        console.log('in handleClick', project);
        //store selected project ID in redux
        this.props.dispatch({ type: 'STORE_CURRENT_PROJECT', payload: project})
-       //select comments for chosen project
-       this.props.dispatch({type:'FETCH_COMMENTS', payload: {id: project.id, client:this.props.reduxState.client}})
-       
-       
+       //fetch branches for chosen project 
+       this.props.dispatch({ type: 'FETCH_BRANCHES', payload: { id: project.id, client: this.props.reduxState.client }})
+       //fetch comments for chosen project
+    //    this.props.dispatch({type:'FETCH_COMMENTS', payload: {id: project.id, client:this.props.reduxState.client}})  
    }
+
     componentDidMount() {
             //call to server to get access token from .env
             axios.get('/api/token')
@@ -46,6 +46,7 @@ class Comments extends Component {
                         </li>
                     ))}
                 </ul>
+                <Branches/>
                 <CommentFeed/>
                 
             </>

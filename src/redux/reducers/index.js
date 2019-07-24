@@ -4,6 +4,7 @@ import client from './clientReducer'
 import projects from './projectsReducer'
 import currentProject from './currentProjectReducer'
 import comments from './commentsReducer'
+import branches from './branchesReducer'
 
 
 // rootReducer is the primary reducer for our entire project
@@ -17,7 +18,8 @@ const rootReducer = combineReducers({
     client, // stores Abstract client
     projects, //stores all projects
     currentProject, //stores data for selected project
-    comments, //stores all comments
+    comments, // stores all comments for selected branch of selected project
+    branches, // stores all branches for chosen project
 });
 
 export default rootReducer;
