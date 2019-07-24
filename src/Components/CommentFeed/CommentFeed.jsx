@@ -4,14 +4,16 @@ import { connect } from 'react-redux'
 
 class CommentFeed extends Component {
 
-    componentDidMount(){
-        //fetch comments for selected project
-        console.log('in commentsfeed redux:', this.props.reduxState)
-        // this.props.dispatch({type:'FETCH_COMMENTS', payload: {client: this.props.reduxState.client, projectId: this.props.reduxState.currentProject}})
-    }
     render(){
         return (
-            <p>feed here</p>
+            <>
+                <h3>Comments</h3>
+                {this.props.reduxState.comments && this.props.reduxState.comments.map((comment, i)=>(
+                    <li key={i}>{comment.body}</li>
+                ))}
+            </>
+            
+            
         )
     }
         
