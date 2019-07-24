@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 
 import Branches from '../Branches/Branches'
 import CommentFeed from '../CommentFeed/CommentFeed'
+import Files from '../Files/Files'
 
 class Comments extends Component {
 
@@ -47,6 +48,7 @@ class Comments extends Component {
                     ))}
                 </ul>
                 <Branches/>
+                <Files/>
                 <CommentFeed/>
                 
             </>

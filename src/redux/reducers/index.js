@@ -5,6 +5,8 @@ import projects from './projectsReducer'
 import currentProject from './currentProjectReducer'
 import comments from './commentsReducer'
 import branches from './branchesReducer'
+import files from './filesReducer'
+import currentBranch from './currentBranchReducer'
 
 
 // rootReducer is the primary reducer for our entire project
@@ -20,6 +22,8 @@ const rootReducer = combineReducers({
     currentProject, //stores data for selected project
     comments, // stores all comments for selected branch of selected project
     branches, // stores all branches for chosen project
+    files, // stores all files for chosen branch
+    currentBranch, //stores data for current branch
 });
 
 export default rootReducer;
