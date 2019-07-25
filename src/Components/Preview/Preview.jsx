@@ -5,17 +5,7 @@ import { connect } from 'react-redux'
 class Preview extends Component {
 
     componentDidMount(){
-        console.log('preview props', this.props.commit);
-        
-        //fetch latest layer for preview
-        // this.props.dispatch({
-        //     type:'FETCH_LAYER', 
-        //     payload: {
-        //         projectId: this.props.reduxState.currentProject.id,
-        //         branchId: this.props.reduxState.currentBranch.id,
-        //         fileId: this.props.file.id,
-        //         client: this.props.reduxState.client
-        // }})
+        console.log('preview props', this.props);
         this.props.dispatch({
             type:'FETCH_PREVIEW', 
             payload: {
@@ -33,7 +23,8 @@ class Preview extends Component {
         return (
             <>
                 {/* <p>{this.props.file.name}</p> */}
-                <img src={this.props.reduxState.previewBlob}/>
+                <h2>{this.props.commit[0].name}</h2>
+                <img src={this.props.reduxState.previewBlob[this.props.i]} />
             </>
         )
     }

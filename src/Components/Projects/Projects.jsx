@@ -40,7 +40,7 @@ class Comments extends Component {
             <>
                 <h3>Projects IDs</h3>
                 <ul>
-                    {this.props.reduxState.projects.map((project, i) => (
+                    {this.props.reduxState.projects && this.props.reduxState.projects.map((project, i) => (
                         <li key={i}>
                             ID:{project.id} NAME:{project.name}
                             <button onClick={()=>this.handleClick(project)}>Select</button>
