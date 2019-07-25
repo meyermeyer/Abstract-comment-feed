@@ -2,14 +2,19 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import { connect } from 'react-redux'
 
-class CommentFeed extends Component {
+import Preview from '../Preview/Preview'
 
+class CommentFeed extends Component {
+    // state = {
+    //     sortedComments: {}
+    // }
+    sortedComments
     sortComments = () => {
         let sortedComments = {}
         // console.log('in sort comments', this.props.reduxState.comments);
         this.props.reduxState.comments.map(comment=>{
             
-            let key=comment.layerId
+            let key=comment.commitSha
             // console.log('in sortComment', comment.layerId)
             if (sortedComments[key]) {
                 console.log('key exists', sortedComments[key]);
@@ -30,7 +35,8 @@ class CommentFeed extends Component {
             
             
         })
-        console.log('sortedComments', sortedComments);
+        this.sortedComments = sortedComments
+        console.log('sortedComments', this.sortedComments);
         
     }
 
@@ -42,9 +48,13 @@ class CommentFeed extends Component {
         return (
             <>
                 <h3>Comments</h3>
-                {this.props.reduxState.comments && this.props.reduxState.comments.map((comment, i)=>(
-                    <li key={i}>{comment.body}</li>
+                {this.sortedComments && Object.values(this.sortedComments).map((commit,i)=>(
+                    
+                    <Preview commit={commit} key={i}/>
                 ))}
+                {/* {this.props.reduxState.comments && this.props.reduxState.comments.map((comment, i)=>(
+                    <li key={i}>{comment.body}</li>
+                ))} */}
             </>
             
             

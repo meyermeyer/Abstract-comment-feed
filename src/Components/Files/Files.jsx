@@ -11,7 +11,7 @@ class Files extends Component {
                 {this.props.reduxState.files && this.props.reduxState.files.map((file, i)=>(
                     <div key= { i }>
                         <p >{file.name}</p>
-                        <Preview file={file} />
+                        {/* <Preview file={file} /> */}
                     </div >
                     
                 ))}

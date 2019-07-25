@@ -11,7 +11,7 @@ class Branches extends Component {
         this.props.dispatch({type: 'STORE_CURRENT_BRANCH', payload: branch})
         this.props.dispatch({ type: 'FETCH_COMMENTS', payload: { projectId: this.props.reduxState.currentProject.id, branchId: branch.id, client: this.props.reduxState.client } })
         this.props.dispatch({ type: 'FETCH_FILES', payload: { projectId: this.props.reduxState.currentProject.id, branchId: branch.id, client: this.props.reduxState.client } })
-        this.props.dispatch({type: 'FETCH_PREVIEW', payload: {projectId: this.props.reduxState.currentProject.id, branchId: branch.id, client: this.props.reduxState.client}})
+        // this.props.dispatch({type: 'FETCH_PREVIEW', payload: {projectId: this.props.reduxState.currentProject.id, branchId: branch.id, client: this.props.reduxState.client}})
     }
     render() {
         return (

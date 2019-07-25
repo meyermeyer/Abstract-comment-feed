@@ -88,12 +88,18 @@ function* fetchPreview(action) {
         let preview
         async function getPreview() {
             preview = await action.payload.client.previews.url({
-                projectId: "3ec7c0c4-6187-48be-b37d-f07e69830f77",
-                branchId: "70d18c81-fe97-43a1-bb6a-ee2d1d0443af",
-                fileId: "77EAA502-A7E9-4DAF-AD5B-3231089978B1",
-                pageId: "0EC89917-F949-4461-A7B3-32A5201FD2A2",
-                layerId: "BE149228-8EB1-4E5B-ABFD-ACA5636C595C",
-                sha: "ba521ef22054ddcbe4cda6802e8ca6e4838dfafc" // or sha: "latest"
+                // projectId: "3ec7c0c4-6187-48be-b37d-f07e69830f77",
+                // branchId: "70d18c81-fe97-43a1-bb6a-ee2d1d0443af",
+                // fileId: "77EAA502-A7E9-4DAF-AD5B-3231089978B1",
+                // pageId: "0EC89917-F949-4461-A7B3-32A5201FD2A2",
+                // layerId: "BE149228-8EB1-4E5B-ABFD-ACA5636C595C",
+                // sha: "ba521ef22054ddcbe4cda6802e8ca6e4838dfafc" // or sha: "latest"
+                projectId: action.payload.projectId,
+                branchId: action.payload.branchId,
+                fileId: action.payload.fileId,
+                pageId: action.payload.pageId,
+                layerId: action.payload.layerId,
+                sha: action.payload.sha
             });
         }
         yield getPreview()
