@@ -7,6 +7,7 @@ import comments from './commentsReducer'
 import branches from './branchesReducer'
 import files from './filesReducer'
 import currentBranch from './currentBranchReducer'
+import previewBlob from './previewBlobReducer'
 
 
 // rootReducer is the primary reducer for our entire project
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
     branches, // stores all branches for chosen project
     files, // stores all files for chosen branch
     currentBranch, //stores data for current branch
+    previewBlob, // stores blob for preview
 });
 
 export default rootReducer;

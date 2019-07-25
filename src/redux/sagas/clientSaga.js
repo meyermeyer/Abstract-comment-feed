@@ -77,7 +77,7 @@ function* fetchFiles(action) {
 
     }
     catch (err) {
-        console.log('error in fetchPreview', err);
+        console.log('error in fetchFiles', err);
 
     }
 }
@@ -88,16 +88,17 @@ function* fetchPreview(action) {
         let preview
         async function getPreview() {
             preview = await action.payload.client.previews.url({
-                projectId: "616daa90-1736-11e8-b8b0-8d1fec7aef78",
-                branchId: "master",
-                // fileId: "51DE7CD1-ECDC-473C-B30E-62AE913743B7",
-                // pageId: "7D2D2599-9B3F-49BC-9F86-9D9D532F143A",
-                // layerId: "CA420E64-08D0-4B96-B0F7-75AA316B6A19",
-                sha: "latest" // or sha: "latest"
+                projectId: "3ec7c0c4-6187-48be-b37d-f07e69830f77",
+                branchId: "70d18c81-fe97-43a1-bb6a-ee2d1d0443af",
+                fileId: "77EAA502-A7E9-4DAF-AD5B-3231089978B1",
+                pageId: "0EC89917-F949-4461-A7B3-32A5201FD2A2",
+                layerId: "BE149228-8EB1-4E5B-ABFD-ACA5636C595C",
+                sha: "ba521ef22054ddcbe4cda6802e8ca6e4838dfafc" // or sha: "latest"
             });
         }
         yield getPreview()
         console.log('preview', preview)
+        yield put ({type: 'STORE_PREVIEW_BLOB', payload: preview})
 
         
     }

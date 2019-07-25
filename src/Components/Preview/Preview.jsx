@@ -15,19 +15,20 @@ class Preview extends Component {
                 fileId: this.props.file.id,
                 client: this.props.reduxState.client
         }})
-        // this.props.dispatch({
-        //     type:'FETCH_PREVIEW', 
-        //     payload: {
-        //         projectId: this.props.reduxState.currentProject.id, 
-        //         branchId: this.props.reduxState.currentBranch.id, 
-        //         fileId: this.props.file.id, 
-        //         client: this.props.reduxState.client
-        //     }})
+        this.props.dispatch({
+            type:'FETCH_PREVIEW', 
+            payload: {
+                projectId: this.props.reduxState.currentProject.id, 
+                branchId: this.props.reduxState.currentBranch.id, 
+                fileId: this.props.file.id, 
+                client: this.props.reduxState.client
+            }})
     }
     render() {
         return (
             <>
                 <p>{this.props.file.name}</p>
+                <img src={this.props.reduxState.previewBlob}/>
             </>
         )
     }
