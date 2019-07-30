@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import { connect } from 'react-redux'
 
+import CommentFeed from '../CommentFeed/CommentFeed'
+
 
 class Branches extends Component {
 
@@ -25,6 +27,7 @@ class Branches extends Component {
                         </li>
                     )
                 })}
+                <CommentFeed />
                 
             </>
         )

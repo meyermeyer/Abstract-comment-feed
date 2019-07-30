@@ -14,7 +14,7 @@ class Preview extends Component {
                 layerId: this.props.commit[0].layerId,
                 fileId: this.props.commit[0].fileId, 
                 pageId: this.props.commit[0].pageId,
-                layerId: this.props.commit[0].layerId,
+                // layerId: this.props.commit[0].layerId,
                 sha: this.props.commit[0].commitSha,
                 client: this.props.reduxState.client
             }})
@@ -25,6 +25,8 @@ class Preview extends Component {
                 {/* <p>{this.props.file.name}</p> */}
                 <h2>{this.props.commit[0].name}</h2>
                 <img src={this.props.reduxState.previewBlob[this.props.i]} />
+                <h3>Comments</h3>
+                
             </>
         )
     }

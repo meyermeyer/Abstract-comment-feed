@@ -38,6 +38,7 @@ class CommentFeed extends Component {
         this.sortedComments = sortedComments
         console.log('sortedComments', this.sortedComments);
         
+        
     }
 
     componentDidUpdate(){
@@ -47,9 +48,14 @@ class CommentFeed extends Component {
     render(){
         return (
             <>
-                <h3>Comments</h3>
+                {/* <h3>Comments</h3> */}
                 {this.sortedComments && Object.values(this.sortedComments).map((commit,i)=>(
-                    <Preview commit={commit} i={i} key={i}/>
+                    <>
+                        <Preview commit={commit} i={i} key={i}/>
+                        {commit.map(comment=>(
+                            <p>{comment.body}</p>
+                        ))}
+                    </>
                 ))}
                 {/* {this.props.reduxState.comments && this.props.reduxState.comments.map((comment, i)=>(
                     <li key={i}>{comment.body}</li>

@@ -49,7 +49,7 @@ class Comments extends Component {
                 </ul>
                 <Branches/>
                 <Files/>
-                <CommentFeed/>
+                
                 
             </>
             
