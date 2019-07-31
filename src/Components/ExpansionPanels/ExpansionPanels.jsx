@@ -32,7 +32,9 @@ function ControlledExpansionPanels(props) {
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
 
-    
+    // if (props.project.id != props.reduxState.currentProject.id) {
+    //     setExpanded(false);
+    // }
 
     const handleChange = panel => (event, isExpanded) => {
         

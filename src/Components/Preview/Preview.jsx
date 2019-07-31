@@ -1,6 +1,29 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
+import {Card, withStyles} from '@material-ui/core'
+
+
+const styles = theme => ({
+    image: {
+        maxWidth: '75%',
+        marginTop: '30px',
+        marginBottom: '30px',
+        padding: '20px',
+        borderStyle: 'solid',
+        borderColor: '#00000029',
+        borderWidth: '2px',
+        borderRadius: '4px'
+    },
+    cardContainer: {
+        maxWidth: '400px',
+        
+        margin: '20px'
+
+        
+    }
+
+});
 
 class Preview extends Component {
 
@@ -21,13 +44,17 @@ class Preview extends Component {
     }
     render() {
         return (
-            <>
-                {/* <p>{this.props.file.name}</p> */}
-                <h2>{this.props.commit[0].name}</h2>
-                <img src={this.props.reduxState.previewBlob[this.props.i]} />
-                <h3>Comments</h3>
+            // <div >
+                <Card className={this.props.classes.cardContainer}>
+                    {/* <p>{this.props.file.name}</p> */}
+                    {/* <h2>{this.props.commit[0].name}</h2> */}
+                    
+                    <img className={this.props.classes.image} src={this.props.reduxState.previewBlob[this.props.i]} />
+                    {/* <h3>Comments</h3> */}
                 
-            </>
+                </Card>
+            //</div> 
+            
         )
     }
 
@@ -37,4 +64,4 @@ class Preview extends Component {
 const mapStateToProps = reduxState => ({
     reduxState
 });
-export default connect(mapStateToProps)(Preview);
+export default withStyles(styles)(connect(mapStateToProps)(Preview));

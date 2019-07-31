@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { put, takeEvery, select } from 'redux-saga/effects';
+import { put, takeEvery, select, all } from 'redux-saga/effects';
 import * as selectors from './selectors';
 import * as Abstract from 'abstract-sdk';
 
@@ -23,7 +23,8 @@ function* fetchClient(action) {
     try {
         const client = yield new Abstract.Client({
             // Specify a specific transport for demo purposes
-            transportMode: "api",
+            // transportMode: "cli",
+            cliPath: "/Applications/Abstract.app/Contents/Resources/app.asar.unpacked/node_modules/@elasticprojects/abstract-cli/bin/abstract-cli",
             accessToken: action.payload,
             apiUrl: "https://cors-anywhere.herokuapp.com/api.goabstract.com"
         });
@@ -129,6 +130,10 @@ function* fetchProjects(action) {
         }
         yield getAllProjects()
         yield put({type: 'STORE_PROJECTS', payload: projects})
+        //need to provide all projectIDs to fetch all branches
+        // yield all(projects.map(project=>{
+        //     return put({ type: 'FETCH_BRANCHES', payload: { id: project.id, client: action.payload } })
+        // }))
     }
     catch(err) {
         console.log('error in fetchProjectsSaga', err);

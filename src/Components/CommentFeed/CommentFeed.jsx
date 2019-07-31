@@ -2,12 +2,18 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import { connect } from 'react-redux'
 
+import {Grid, withStyles} from '@material-ui/core'
+
 import Preview from '../Preview/Preview'
 
+const styles = theme => ({
+    container: {
+        flexGrow: 1,
+        padding: theme.spacing(3),
+    }
+});
+
 class CommentFeed extends Component {
-    // state = {
-    //     sortedComments: {}
-    // }
     sortedComments
     sortComments = () => {
         let sortedComments = {}
@@ -47,20 +53,22 @@ class CommentFeed extends Component {
 
     render(){
         return (
-            <>
+            <main className={this.props.classes.container}>
                 {/* <h3>Comments</h3> */}
                 {this.sortedComments && Object.values(this.sortedComments).map((commit,i)=>(
-                    <>
-                        <Preview commit={commit} i={i} key={i}/>
-                        {commit.map(comment=>(
-                            <p>{comment.body}</p>
-                        ))}
-                    </>
+                    <Grid container>
+                        <Grid item xs={6}>
+                            <Preview commit={commit} i={i} key={i} />
+                        </Grid>
+                        <Grid item xs={6}>
+                            {commit.map(comment => (
+                                <p>{comment.body}</p>
+                            ))}
+                        </Grid>
+                        
+                    </Grid>
                 ))}
-                {/* {this.props.reduxState.comments && this.props.reduxState.comments.map((comment, i)=>(
-                    <li key={i}>{comment.body}</li>
-                ))} */}
-            </>
+            </main>
             
             
         )
@@ -73,4 +81,4 @@ class CommentFeed extends Component {
 const mapStateToProps = reduxState => ({
     reduxState
 });
-export default connect(mapStateToProps)(CommentFeed);
+export default withStyles(styles)(connect(mapStateToProps)(CommentFeed));
