@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import axios from 'axios'
 import {connect} from 'react-redux'
 
+import ListItem from '@material-ui/core/ListItem';
+
+import ExpansionPanels from '../ExpansionPanels/ExpansionPanels'
 import Branches from '../Branches/Branches'
 import CommentFeed from '../CommentFeed/CommentFeed'
 import Files from '../Files/Files'
@@ -38,19 +41,18 @@ class Comments extends Component {
         
         return(
             <>
-                <h3>Projects IDs</h3>
-                <ul>
+                {/* <h3>Projects IDs</h3>
+                <ul> */}
                     {this.props.reduxState.projects && this.props.reduxState.projects.map((project, i) => (
-                        <li key={i}>
-                            ID:{project.id} NAME:{project.name}
-                            <button onClick={()=>this.handleClick(project)}>Select</button>
-                        </li>
+                        <ListItem button key={i} onClick={() => this.handleClick(project)}>
+                            {/* ID:{project.id} NAME:{project.name} */}
+                            <ExpansionPanels project={project}/>
+                            {/* <button onClick={()=>this.handleClick(project)}>Select</button> */}
+                        </ListItem>
                     ))}
-                </ul>
-                <Branches/>
-                <Files/>
-                
-                
+                {/* </ul> */}
+                {/* <Branches/> */}
+                {/* <Files/> */}
             </>
             
             

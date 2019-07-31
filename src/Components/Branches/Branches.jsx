@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import { connect } from 'react-redux'
 
+//MaterialUI
+import ListItem from '@material-ui/core/ListItem';
+
 import CommentFeed from '../CommentFeed/CommentFeed'
+
 
 
 class Branches extends Component {
@@ -20,14 +24,17 @@ class Branches extends Component {
             <>
                 <h3>Branches</h3>
                 {this.props.reduxState.branches && this.props.reduxState.branches.map((branch,i) =>{
-                    return(
-                        <li key={i}>
-                            {branch.name}
-                            <button onClick={()=>this.handleSelect(branch)}>Select</button>
-                        </li>
-                    )
+                    if (this.props.project.id === branch.projectId){
+                        return (
+                            <ListItem key={i}>
+                                {branch.name}
+                                <button onClick={() => this.handleSelect(branch)}>Select</button>
+                            </ListItem>
+                        )
+                    }
+                    
                 })}
-                <CommentFeed />
+                
                 
             </>
         )
