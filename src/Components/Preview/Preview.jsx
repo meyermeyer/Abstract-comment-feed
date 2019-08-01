@@ -16,7 +16,7 @@ const styles = theme => ({
         borderRadius: '4px'
     },
     cardContainer: {
-        maxWidth: '400px',
+        maxWidth: '100%',
         
         margin: '20px'
 
@@ -37,7 +37,6 @@ class Preview extends Component {
                 layerId: this.props.commit[0].layerId,
                 fileId: this.props.commit[0].fileId, 
                 pageId: this.props.commit[0].pageId,
-                // layerId: this.props.commit[0].layerId,
                 sha: this.props.commit[0].commitSha,
                 client: this.props.reduxState.client
             }})
@@ -49,7 +48,7 @@ class Preview extends Component {
                     {/* <p>{this.props.file.name}</p> */}
                     {/* <h2>{this.props.commit[0].name}</h2> */}
                     
-                    <img className={this.props.classes.image} src={this.props.reduxState.previewBlob[this.props.i]} />
+                    <img className={this.props.classes.image} src={this.props.reduxState.previewBlob[this.props.commit[0].commitSha]} />
                     {/* <h3>Comments</h3> */}
                 
                 </Card>

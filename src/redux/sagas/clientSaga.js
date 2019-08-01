@@ -23,8 +23,8 @@ function* fetchClient(action) {
     try {
         const client = yield new Abstract.Client({
             // Specify a specific transport for demo purposes
-            // transportMode: "cli",
-            cliPath: "/Applications/Abstract.app/Contents/Resources/app.asar.unpacked/node_modules/@elasticprojects/abstract-cli/bin/abstract-cli",
+            transportMode: "api",
+            // cliPath: "/Applications/Abstract.app/Contents/Resources/app.asar.unpacked/node_modules/@elasticprojects/abstract-cli/bin/abstract-cli",
             accessToken: action.payload,
             apiUrl: "https://cors-anywhere.herokuapp.com/api.goabstract.com"
         });
@@ -62,7 +62,7 @@ function* fetchComments(action){
 
 function* fetchFiles(action) {
     try {
-        console.log('in fetchPreview', action.payload);
+        console.log('in fetchFiles', action.payload);
         let files = []
         async function getFiles() {
             files = await action.payload.client.files.list({
@@ -105,7 +105,7 @@ function* fetchPreview(action) {
         }
         yield getPreview()
         console.log('preview', preview)
-        yield put ({type: 'STORE_PREVIEW_BLOB', payload: preview})
+        yield put ({type: 'STORE_PREVIEW_BLOB', payload: {preview: preview, sha: action.payload.sha}})
 
         
     }
@@ -128,6 +128,7 @@ function* fetchProjects(action) {
             console.log('projects', projects);
             return projects;
         }
+        
         yield getAllProjects()
         yield put({type: 'STORE_PROJECTS', payload: projects})
         //need to provide all projectIDs to fetch all branches
@@ -137,6 +138,17 @@ function* fetchProjects(action) {
     }
     catch(err) {
         console.log('error in fetchProjectsSaga', err);
+        async function waitForReset() {
+            if (err instanceof Abstract.RateLimitError) {
+                // Query all projects again
+                setTimeout(async() => {
+                    const projects = await action.payload.projects.list();
+                },
+                    // Wait until the rate limit resets
+                    err.data.resetsAt - Date.now());
+            }
+        }
+        yield waitForReset();
         
     }
 }
