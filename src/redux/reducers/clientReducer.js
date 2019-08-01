@@ -7,5 +7,4 @@ const client = (state = '', action) => {
     }
 };
 
-
 export default client;

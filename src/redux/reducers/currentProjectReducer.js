@@ -7,5 +7,4 @@ const currentProject = (state = {}, action) => {
     }
 };
 
-
 export default currentProject;

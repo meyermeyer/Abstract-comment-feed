@@ -7,5 +7,4 @@ const projects = (state = [], action) => {
     }
 };
 
-
 export default projects;

@@ -7,5 +7,4 @@ const currentBranch = (state = {}, action) => {
     }
 };
 
-
 export default currentBranch;

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios'
 import { connect } from 'react-redux'
 import moment from 'moment'
 
@@ -11,9 +10,12 @@ const styles = theme => ({
     container: {
         flexGrow: 1,
         padding: theme.spacing(3),
+        
+    },
+    gridContainer: {
+        marginTop: '40px'
     },
     avatar: {
-        // backgroundColor: theme.palette.primary.main,
         backgroundColor: '#945ecf'
     },
     commentCard: {
@@ -31,24 +33,18 @@ const styles = theme => ({
 
 class CommentFeed extends Component {
     sortedComments
+    //sort comments by sha
     sortComments = () => {
         let sortedComments = {}
-        // console.log('in sort comments', this.props.reduxState.comments);
         this.props.reduxState.comments.map(comment=>{
-            
             let key=comment.commitSha
-            // console.log('in sortComment', comment.layerId)
             if (sortedComments[key]) {
-                console.log('key exists', sortedComments[key]);
-                
                 sortedComments = {
                     ...sortedComments,
                     [key]: [...sortedComments[key], comment]
                 }   
             }
             else {
-                console.log('key does not exist', key);
-                
                 sortedComments = {
                     ...sortedComments,
                     [key]: [comment]
@@ -56,12 +52,9 @@ class CommentFeed extends Component {
             }
         })
         this.sortedComments = sortedComments
-        console.log('sortedComments', this.sortedComments);
-        
-        
-        
     }
 
+    
 
     componentDidUpdate(){
         this.props.reduxState.comments && this.sortComments()
@@ -71,7 +64,7 @@ class CommentFeed extends Component {
         return (
             <main className={this.props.classes.container}>
                 {this.sortedComments && Object.values(this.sortedComments).map((commit,i)=>(
-                    <Grid container>
+                    <Grid container className={this.props.classes.gridContainer}>
                         <Grid item xs={8}>
                             <Preview commit={commit} i={i} key={i} />
                         </Grid>
@@ -92,8 +85,7 @@ class CommentFeed extends Component {
                                         <CardContent classes={this.props.classes.commentBody}>
                                             {comment.body}
                                         </CardContent>
-                                    </>
-                                    
+                                    </> 
                                 ))}
                             </Card>
                         </Grid>
@@ -104,8 +96,8 @@ class CommentFeed extends Component {
     }
 }
 
-
 const mapStateToProps = reduxState => ({
     reduxState
 });
+
 export default withStyles(styles)(connect(mapStateToProps)(CommentFeed));

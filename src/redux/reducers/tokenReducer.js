@@ -7,5 +7,4 @@ const token = (state = '', action) => {
     }
 };
 
-
 export default token;

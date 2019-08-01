@@ -1,13 +1,15 @@
 import { combineReducers } from 'redux';
-import token from './tokenReducer';
-import client from './clientReducer'
-import projects from './projectsReducer'
-import currentProject from './currentProjectReducer'
-import comments from './commentsReducer'
+
 import branches from './branchesReducer'
-import files from './filesReducer'
+import client from './clientReducer'
+import comments from './commentsReducer'
+import commits from './commitsReducer'
 import currentBranch from './currentBranchReducer'
+import currentProject from './currentProjectReducer'
+import files from './filesReducer'
 import previewBlob from './previewBlobReducer'
+import projects from './projectsReducer'
+import token from './tokenReducer';
 
 
 // rootReducer is the primary reducer for our entire project
@@ -17,15 +19,16 @@ import previewBlob from './previewBlobReducer'
 // Lets make a bigger object for our store, with the objects from our reducers.
 // This is what we get when we use 'state' inside of 'mapStateToProps'
 const rootReducer = combineReducers({
-    token, // stores API access token
-    client, // stores Abstract client
-    projects, //stores all projects
-    currentProject, //stores data for selected project
-    comments, // stores all comments for selected branch of selected project
     branches, // stores all branches for chosen project
-    files, // stores all files for chosen branch
+    client, // stores Abstract client
+    comments, // stores all comments for selected branch of selected project
+    commits, //stores commits in object for chosen branch and project
     currentBranch, //stores data for current branch
+    currentProject, //stores data for selected project
+    files, // stores all files for chosen branch
     previewBlob, // stores blob for preview
+    projects, //stores all projects
+    token, // stores API access token
 });
 
 export default rootReducer;

@@ -17,18 +17,16 @@ const styles = theme => ({
     },
     cardContainer: {
         maxWidth: '100%',
-        
-        margin: '20px'
-
-        
+        margin: '20px' 
+    },
+    header: {
+        marginTop: '-23px'
     }
-
 });
 
 class Preview extends Component {
 
     componentDidMount(){
-        console.log('preview props', this.props);
         this.props.dispatch({
             type:'FETCH_PREVIEW', 
             payload: {
@@ -39,26 +37,31 @@ class Preview extends Component {
                 pageId: this.props.commit[0].pageId,
                 sha: this.props.commit[0].commitSha,
                 client: this.props.reduxState.client
-            }})
+            }
+        })
+        this.props.dispatch({ 
+            type: 'FETCH_COMMITS', 
+            payload: { 
+                client: this.props.reduxState.client, 
+                sha: this.props.commit[0].commitSha,
+                projectId: this.props.reduxState.currentProject.id,
+                branchId: this.props.reduxState.currentBranch.id, 
+            }
+        })
     }
+
     render() {
+        console.log('trying to get title', this.props.commit[0].commitSha)
         return (
-            // <div >
+            <div >
+                <h3 className={this.props.classes.header}>{this.props.reduxState.commits[this.props.commit[0].commitSha] && this.props.reduxState.commits[this.props.commit[0].commitSha].title}</h3>
                 <Card className={this.props.classes.cardContainer}>
-                    {/* <p>{this.props.file.name}</p> */}
-                    {/* <h2>{this.props.commit[0].name}</h2> */}
-                    
                     <img className={this.props.classes.image} src={this.props.reduxState.previewBlob[this.props.commit[0].commitSha]} />
-                    {/* <h3>Comments</h3> */}
-                
                 </Card>
-            //</div> 
-            
+            </div> 
         )
     }
-
 }
-
 
 const mapStateToProps = reduxState => ({
     reduxState

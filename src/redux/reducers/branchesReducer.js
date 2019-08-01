@@ -7,5 +7,4 @@ const branchesReducer = (state = [], action) => {
     }
 };
 
-
 export default branchesReducer;
