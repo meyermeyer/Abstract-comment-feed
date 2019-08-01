@@ -4,7 +4,16 @@ import { connect } from 'react-redux'
 
 //MaterialUI
 import ListItem from '@material-ui/core/ListItem';
-import {Button, Grid, Typography} from '@material-ui/core'
+import {Button, IconButton, Grid, Typography, withStyles} from '@material-ui/core'
+import ArrowForwardIcon from '@material-ui/icons/ArrowForwardIos'
+
+
+const styles = theme => ({
+    button: {
+        paddingTop: 0,
+        color: theme.palette.secondary.dark
+    }
+});
 
 class Branches extends Component {
 
@@ -28,7 +37,19 @@ class Branches extends Component {
                                         <Typography>{branch.name}</Typography>
                                     </Grid>
                                     <Grid item xs={5}>
-                                        <Button variant="contained" color="secondary" onClick={() => this.handleSelect(branch)}>Select</Button>
+                                        <IconButton
+                                            type="submit"
+                                            variant="contained"
+                                            color="secondary"
+                                            onClick={() => this.handleSelect(branch)}
+                                            classes={this.props.classes.button}
+
+                                        >
+                                            <ArrowForwardIcon />
+                                        </IconButton>
+                                        {/* <Button onClick={() => this.handleSelect(branch)}>
+                                            
+                                        </Button> */}
                                     </Grid>
                                 </Grid>
                             </ListItem> 
@@ -44,4 +65,4 @@ const mapStateToProps = reduxState => ({
     reduxState
 });
 
-export default connect(mapStateToProps)(Branches);
+export default withStyles(styles)(connect(mapStateToProps)(Branches));

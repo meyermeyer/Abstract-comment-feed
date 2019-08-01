@@ -16,7 +16,7 @@ const styles = theme => ({
         marginTop: '40px'
     },
     avatar: {
-        backgroundColor: '#945ecf'
+        backgroundColor: theme.palette.primary.main
     },
     commentCard: {
         marginTop: '20px',

@@ -3,9 +3,13 @@ import axios from 'axios'
 import {connect} from 'react-redux'
 
 import ListItem from '@material-ui/core/ListItem';
+import { withStyles } from '@material-ui/core'
 
 import ExpansionPanels from '../ExpansionPanels/ExpansionPanels'
 
+const styles = theme => ({
+   
+});
 
 class Projects extends Component {
 
@@ -50,4 +54,4 @@ const mapStateToProps = reduxState => ({
     reduxState
 });
 
-export default connect(mapStateToProps)(Projects);
+export default withStyles(styles)(connect(mapStateToProps)(Projects));

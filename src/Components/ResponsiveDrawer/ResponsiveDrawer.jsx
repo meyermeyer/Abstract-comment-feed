@@ -21,7 +21,9 @@ const useStyles = makeStyles(theme => ({
         [theme.breakpoints.up('sm')]: {
             width: drawerWidth,
             flexShrink: 0,
+            
         },
+        
     },
     appBar: {
         marginLeft: drawerWidth,
@@ -38,11 +40,15 @@ const useStyles = makeStyles(theme => ({
     toolbar: theme.mixins.toolbar,
     drawerPaper: {
         width: drawerWidth,
+        backgroundColor: theme.palette.primary.dark
     },
     content: {
         flexGrow: 1,
         padding: theme.spacing(3),
     },
+    header: {
+        color: 'white'
+    }
 }));
 
 function ResponsiveDrawer(props) {
@@ -59,7 +65,7 @@ function ResponsiveDrawer(props) {
         <div>
             <div className={classes.toolbar} />
             <Divider />
-            <h3>Your Projects</h3>
+            <h3 className={classes.header}>Your Projects</h3>
             <List>
                 <Projects/>
             </List>
@@ -69,7 +75,7 @@ function ResponsiveDrawer(props) {
     return (
         <div className={classes.root}>
             <CssBaseline />
-            <nav className={classes.drawer} aria-label="mailbox folders">
+            <nav className={classes.drawer} aria-label="project selection">
                 {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
                 <Hidden smUp implementation="css">
                     <Drawer

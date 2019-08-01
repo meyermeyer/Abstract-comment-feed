@@ -22,25 +22,21 @@ const useStyles = makeStyles(theme => ({
         flexBasis: '33.33%',
         flexShrink: 0,
     },
-    // secondaryHeading: {
-    //     fontSize: theme.typography.pxToRem(15),
-    //     color: theme.palette.text.secondary,
-    // },
+    panel: {
+        backgroundColor: theme.palette.primary.light
+    }
+
 }));
 
 function ControlledExpansionPanels(props) {
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
 
-    // if (props.project.id != props.reduxState.currentProject.id) {
-    //     setExpanded(false);
-    // }
-
     const handleChange = panel => (event, isExpanded) => {
-        
-            setExpanded(isExpanded ? panel : false);
-        
+            setExpanded(isExpanded ? panel : false);   
     };
+
+
     console.log('expansion panels', props)
     return (
         <div className={classes.root}>
@@ -49,15 +45,14 @@ function ControlledExpansionPanels(props) {
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel1bh-content"
                     id="panel1bh-header"
+                    className={classes.panel}
                 >
                     <Typography className={classes.heading}>{props.project.name}</Typography>
                 </ExpansionPanelSummary>
-                <ExpansionPanelDetails>
-                    {/* <Typography>Branches here</Typography> */}
+                <ExpansionPanelDetails className={classes.panel}>
                     <List>
                         <Branches project={props.project}/> 
-                    </List>
-                                      
+                    </List>          
                 </ExpansionPanelDetails>
             </ExpansionPanel>
         </div>
