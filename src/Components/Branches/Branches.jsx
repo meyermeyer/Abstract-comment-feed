@@ -40,7 +40,7 @@ class Branches extends Component {
                                         <IconButton
                                             type="submit"
                                             variant="contained"
-                                            color="secondary"
+                                            // color="secondary"
                                             onClick={() => this.handleSelect(branch)}
                                             classes={this.props.classes.button}
 
