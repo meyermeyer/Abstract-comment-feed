@@ -23,6 +23,5 @@ Displays a comment feed for your Abstract Projects. Once setup, use the left men
      alt="View"
      style="float: left; margin-right: 10px;" />
 
-![View](View.png)
 
 Thanks to the Abstract SDK, Sketch, and Andrea Burton!
