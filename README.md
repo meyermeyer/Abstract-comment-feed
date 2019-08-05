@@ -19,7 +19,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ##This Program
 Displays a comment feed for your Abstract Projects. Once setup, use the left menu to select a project, then branch and view all of your comments alongside a preview of the artboard, sorted by commit.
-<img src="view.png"
+<img src="/public/view.png"
      alt="View"
      style="float: left; margin-right: 10px;" />
 
