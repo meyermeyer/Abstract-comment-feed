@@ -1,9 +1,9 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## To Run
- npm install
- npm run server
- npm run client
+ -npm install
+ -npm run server
+ -npm run client
 
  this build is a proof of concept.  because requests to the Abstract API come from the client, they hit against a CORS error.  To bypass this error for the sake of demo, install this plugin (or a similar one) to the Chrome browser: https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi
 
